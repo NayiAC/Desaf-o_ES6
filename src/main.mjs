@@ -1,25 +1,20 @@
-//importar las dos clases necesarias
-import Cliente from "./cliente.mjs";
-import Impuestos from "./impuestos.mjs";
+import {Cliente} from './cliente.mjs';
+import {Impuestos} from './impuestos.mjs';
 
-// Creando una instancia de Impuestos 
-let impuestos_cliente1 = new Impuestos(750000,150000);
+//crear instancia impuesto
+const impuesto1 = new Impuestos(1000000, 80000);
+//pasa estos datos al segundo parametro de cliente
+const cliente1 = new Cliente('Tulio Triviño', impuesto1);
 
-// Probando métodos Setter de la clase Impuestos
-impuestos_cliente1.monto_bruto_anual = 850000;
-impuestos_cliente1.deducciones = 200000;
+const impuesto2 = new Impuestos(2000000, 160000);
+const cliente2 = new Cliente('Juan Carlos Bodoque', impuesto2);
 
-// Creando una instancia de la clase Cliente
-let cliente1 = new Cliente('Juanin',impuestos_cliente1);
 
-// Probando método Setter de la clase Cliente
-cliente1.nombre = 'Tulio';
-
-// Imprimiendo información en consola a través de métodos Getter
-console.log(`Nombre Cliente: ${cliente1.nombre}`);
-console.log(`Monto bruto anual: ${impuestos_cliente1.monto_bruto_anual}`);
-console.log(`Deducciones: ${impuestos_cliente1.deducciones}`);
-
-// Imprimiendo en consola el impuesto calculado con método 
-// calcularImpuesto() de la clase Cliente.
-console.log(`Impuesto: ${cliente1.calcularImpuesto(impuestos_cliente1.monto_bruto_anual,impuestos_cliente1.deducciones)}`);
+//-- mostrar en HTML y consola
+let infoCliente = document.getElementById("info")
+infoCliente.innerHTML = `
+  <p>El impuesto a pagar por ${cliente1.nombre} es ${cliente1.calcularImpuesto()}</p>
+  <p>El impuesto a pagar por ${cliente2.nombre} es ${cliente2.calcularImpuesto()}</p>
+`
+console.log(`El impuesto a pagar por ${cliente1.nombre} es ${cliente1.calcularImpuesto()}`)
+console.log(`El impuesto a pagar por ${cliente2.nombre} es ${cliente2.calcularImpuesto()}`)

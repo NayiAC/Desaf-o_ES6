@@ -1,28 +1,16 @@
 "use strict";
 
-var _cliente = _interopRequireDefault(require("./cliente.mjs"));
-var _impuestos = _interopRequireDefault(require("./impuestos.mjs"));
-function _interopRequireDefault(e) { return e && e.__esModule ? e : { "default": e }; }
-//importar las dos clases necesarias
+var _cliente = require("./cliente.mjs");
+var _impuestos = require("./impuestos.mjs");
+//crear instancia impuesto
+var impuesto1 = new _impuestos.Impuestos(1000000, 80000);
+//pasa estos datos al segundo parametro de cliente
+var cliente1 = new _cliente.Cliente('Tulio Triviño', impuesto1);
+var impuesto2 = new _impuestos.Impuestos(2000000, 160000);
+var cliente2 = new _cliente.Cliente('Juan Carlos Bodoque', impuesto2);
 
-// Creando una instancia de Impuestos 
-var impuestos_cliente1 = new _impuestos["default"](750000, 150000);
-
-// Probando métodos Setter de la clase Impuestos
-impuestos_cliente1.monto_bruto_anual = 850000;
-impuestos_cliente1.deducciones = 200000;
-
-// Creando una instancia de la clase Cliente
-var cliente1 = new _cliente["default"]('Juanin', impuestos_cliente1);
-
-// Probando método Setter de la clase Cliente
-cliente1.nombre = 'Tulio';
-
-// Imprimiendo información en consola a través de métodos Getter
-console.log("Nombre Cliente: ".concat(cliente1.nombre));
-console.log("Monto bruto anual: ".concat(impuestos_cliente1.monto_bruto_anual));
-console.log("Deducciones: ".concat(impuestos_cliente1.deducciones));
-
-// Imprimiendo en consola el impuesto calculado con método 
-// calcularImpuesto() de la clase Cliente.
-console.log("Impuesto: ".concat(cliente1.calcularImpuesto(impuestos_cliente1.monto_bruto_anual, impuestos_cliente1.deducciones)));
+//-- mostrar en HTML y consola
+var infoCliente = document.getElementById("info");
+infoCliente.innerHTML = "\n  <p>El impuesto a pagar por ".concat(cliente1.nombre, " es ").concat(cliente1.calcularImpuesto(), "</p>\n  <p>El impuesto a pagar por ").concat(cliente2.nombre, " es ").concat(cliente2.calcularImpuesto(), "</p>\n");
+console.log("El impuesto a pagar por ".concat(cliente1.nombre, " es ").concat(cliente1.calcularImpuesto()));
+console.log("El impuesto a pagar por ".concat(cliente2.nombre, " es ").concat(cliente2.calcularImpuesto()));

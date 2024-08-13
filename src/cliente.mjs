@@ -1,39 +1,36 @@
-// Importa Impuestos 
-"./impuestos.mjs";
-
- class Cliente{
-    contructor(nombre, impuesto){
-        this._nombre = nombre;
-        this._impuesto = [impuesto];
+class Cliente {
+    #nombre
+    #impuesto
+    constructor (nombre, impuesto) {
+      this.#nombre = nombre
+      this.#impuesto = impuesto
     }
-
-    // Getter
-    get nombre(){
-        return this._nombre;
+  
+    get nombre() {
+      return this.#nombre
     }
-    
-    // Setter
-    set nombre(nuevo_nombre){
-        this._nombre = nuevo_nombre;
+  
+    set nombre(nuevoNombre) {
+      return this.#nombre = nuevoNombre
     }
-
-    // Getter
-    get impuestos(){
-        return this._impuestos;
+  
+    get impuesto() {
+      return this.#impuesto
     }
-
-    //Setter
-    set impuestos(impuesto) {
-        this._impuesto.push(impuesto)
+  
+    set impuesto(nuevoImpuesto) {
+      return this.#impuesto = nuevoImpuesto
     }
-
-    // Método de cálculo
+  
     calcularImpuesto() {
-        let totalImpuestos=0;
-        this._impuestos.forEach(impuesto=>{
-            totalImpuestos+=((impuesto.montoBrutoAnual - impuesto.deducciones) / 100) * 21})
-        return totalImpuestos
+      //desestructuracion de datos creado en la instancia new Impuesto
+      //que se guardaron en Cliente como propiedad impuesto
+      const { montoBrutoAnual, deducciones } = this.#impuesto;
+      //cálculo
+      return (montoBrutoAnual - deducciones) * 0.21;
     }
-}
-
-export default  Cliente;
+  }
+  
+  export {
+    Cliente
+  }
